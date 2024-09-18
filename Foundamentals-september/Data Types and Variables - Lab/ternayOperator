@@ -1,0 +1,1 @@
+ernayOperator = replace === str2? "Matched" : "Not Matched"  //Ternnay Operator
