@@ -1,1 +1,29 @@
-ernayOperator = replace === str2? "Matched" : "Not Matched"  //Ternnay Operator
+//ernayOperator = replace === str2? "Matched" : "Not Matched"  //Ternnay Operator
+Тернарният оператор в JavaScript е кратък начин за писане на условни конструкции. Той замества if...else условието и е известен също като 
+"условен оператор". Форматът му е следният:
+
+javascript
+
+condition ? expressionIfTrue : expressionIfFalse;
+condition е условието, което трябва да се провери.
+expressionIfTrue е резултатът, ако условието е истина (true).
+expressionIfFalse е резултатът, ако условието е лъжа (false).
+Пример:
+javascript
+
+let age = 20;
+let canDrink = age >= 18 ? "Yes" : "No";
+console.log(canDrink); // "Yes"
+В този пример, ако възрастта (age) е равна на или по-голяма от 18, тогава резултатът ще е "Yes", иначе ще е "No".
+
+Това е съкратен начин за писане на условие вместо:
+
+javascript
+Copy code
+let canDrink;
+if (age >= 18) {
+  canDrink = "Yes";
+} else {
+  canDrink = "No";
+}
+Тернарният оператор е полезен за кратки проверки и присвоявания на стойности в една линия код.
