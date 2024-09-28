@@ -2,3 +2,5 @@
 Basic module and fundamental module tasks
 
 Basic Syntax Conditional Statements and loops Updated
+
+Arrays lab and Exercise updated!
