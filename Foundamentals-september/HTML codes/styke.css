@@ -1,0 +1,12 @@
+h1 {
+    color: blue;
+    text-align: center;
+}
+
+.coloring {
+    color: rgb(2, 59, 2)
+}
+
+#importantHeading {
+    color: yellowgreen
+}
