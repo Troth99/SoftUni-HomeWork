@@ -1,0 +1,4 @@
+The for…in statement enumerates over each key in an object. It’s worth noting that this statement 
+will enumerate over keys that are string data types, but will ignore symbol types.
+
+същото и за if in проверява по ключ а не по стойност.
