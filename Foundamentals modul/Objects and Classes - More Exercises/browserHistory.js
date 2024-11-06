@@ -1,4 +1,5 @@
 function borwserHistory(browserObject, actions) {
+    
 let browserName = browserObject["Browser Name"]
 let openTabs = browserObject["Open Tabs"];
 let recentlyClosed = browserObject["Recently Closed"];
