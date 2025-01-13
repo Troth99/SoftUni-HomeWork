@@ -21,4 +21,4 @@ return sorted
 
 }
 
-sortingNumbers([22, 9, 63, 3, 2, 19, 54, 11, 21, 18])
+console.log(sortingNumbers([22, 9, 63, 3, 2, 19, 54, 11, 21, 18]));
