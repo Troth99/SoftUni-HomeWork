@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Targeting HTML elements</title>
+
+    <style>
+        #wrapper {
+            border: 1px solid red;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .colorful-lines {
+            border: 1px solid red
+        }
+
+        .item {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            align-content: center;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="wrapper" class="colorful-lines">
+        <div class="colorful-lines item">
+            Hello word 2
+        </div>
+        <div class="colorful-lines item">
+            Hello World
+        </div>
+    </div>
+
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque deserunt repellat voluptatibus.
+        Quia atque doloremque sapiente eius distinctio. Facilis reiciendis quos incidunt.
+        Suscipit cum ab quibusdam aperiam omnis consectetur labore.
+        Fuga dolore maiores porro earum quae, autem, odit quas consequatur modi
+        sed voluptate exercitationem quaerat cupiditate provident repellendus corporis ex in
+        eligendi inventore labore explicabo. Perspiciatis repudiandae magnam eius deleniti.
+    </p>
+    <h3 id = "list-header">Shopping List:</h3>
+    <ul>
+        <li>Bread</li>
+        <li id="favourite-food">Eggs</li>
+        <li>Ham</li>
+        <li>Fruits</li>
+    </ul>
+    <h3>Clock</h3>
+    <div id="timer">0</div>
+    <script>
+
+        // Fav food Demon
+        const favFood = document.getElementById("favourite-food");
+        console.log(favFood);
+        favFood.style.background = "yellow"
+
+        setTimeout(() => {
+            favFood.textContent = "French Fries"
+        }, 3000)
+
+        // Timer Demon
+        const timerEl = document.getElementById('timer')
+        console.log(timerEl);
+        let counter = 0
+        setInterval(() => {
+            counter++
+            timerEl.textContent = counter
+            if (counter === 100) counter = 0
+        }, 1000)
+        
+
+        // Targeting Demo
+        const liElements = document.getElementsByTagName("li")
+        //console.log(liElements)
+
+        // Target By class
+        const listHeader = document.getElementsByClassName('list-header');
+        //console.log(listHeader);
+
+        //With query selector
+
+        const listheaderEl = document.querySelector('h3.list-header');
+        //console.log(listheaderEl);
+
+        const shoppingListItems = document.querySelectorAll(".shopping-list li");
+        //console.log(shoppingListItems)
+
+        // Iterate over HTML elements
+        console.log(liElements);
+        for (const li of liElements) {
+            //console.log(li)
+        }
+
+        //access element HTMLelements and NodeList
+
+        // Convert to an array
+
+        Array.from(shoppingListItems)
+        console.log(shoppingListItems)
+
+    </script>
+</body>
+
+</html>
