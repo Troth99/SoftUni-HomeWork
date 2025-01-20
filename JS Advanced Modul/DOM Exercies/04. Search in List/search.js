@@ -1,5 +1,5 @@
 function search() {
-   const townsEL = document.querySelectorAll(`ul li`)
+   const townsEL = document.querySelectorAll(`#towns li`)
    const textEl = document.getElementById('searchText');
    const resultEL = document.getElementById('result');
    
