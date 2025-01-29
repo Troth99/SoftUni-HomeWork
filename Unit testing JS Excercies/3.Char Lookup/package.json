@@ -1,0 +1,16 @@
+{
+  "name": "3.char-lookup",
+  "version": "1.0.0",
+  "main": "charLookup.js",
+  "type": "module",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "chai": "^5.1.2",
+    "mocha": "^11.1.0"
+  }
+}
