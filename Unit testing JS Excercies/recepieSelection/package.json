@@ -1,0 +1,19 @@
+{
+  "name": "recepieselection",
+  "version": "1.0.0",
+  "main": "recipeSelection.js",
+  "type": "module",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "chai": "^5.1.2",
+    "mocha": "^11.1.0"
+  }
+}
