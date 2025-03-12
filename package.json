@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "html": "^1.0.0",
-    "lit": "^3.2.1",
-    "lit-html": "^3.2.1",
-    "playwright-chromium": "^1.50.1"
-  }
-}
