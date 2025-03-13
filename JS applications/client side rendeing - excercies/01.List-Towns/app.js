@@ -11,14 +11,14 @@ function getTheInputData(e) {
     const input = document.getElementById('towns').value
     const towns = input.split(', ')
     console.log(towns)
-  
+
     render(createTemplate(towns), mainEl)
 }
 
 function createTemplate(towns) {
     return html`
         <ul>
-            ${towns.map((town) => html `<li>${town}</li>`)}
+            ${towns.map((town) => html`<li>${town}</li>`)}
         </ul>
     `;
 }
