@@ -65,7 +65,6 @@ function validationInput(inputEL){
                 isValid = value.length >= 4; 
                 break;
             case 'year':
-                value = Number(value)
                 isValid = value >= 1950 && value <= 2050;
                 break;
             case 'description':
