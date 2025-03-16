@@ -22,7 +22,7 @@ async function login(formInputs) {
         }
         const data = await response.json()
 
-        console.log(data)
+
         localStorage.setItem('token', data.accessToken)
         localStorage.setItem('email', data.email);
         localStorage.setItem('userId', data._id)
@@ -32,7 +32,7 @@ async function login(formInputs) {
     }
 }
 
-async function register(body){
+async function register(body) {
     try {
         const response = await fetch(registerUrl, {
             method: 'POST',
@@ -62,13 +62,11 @@ export async function handleRegister(e) {
     const formData = new FormData(e.target)
     const formInputs = Object.fromEntries(formData)
 
-    const email = formData.get('email')
-    const password = formData.get('password');
-    const rePassword = formData.get('re-password')
+    const email = formData.get('email').trim()
+    const password = formData.get('password').trim();
+    const rePassword = formData.get('re-password').trim();
 
-    const areEmpty = Object.values(formInputs).some(val => val === '')
-
-    if (areEmpty) {
+    if (!email || !rePassword) {
         alert('All fields are required!')
         return
     }
@@ -80,20 +78,20 @@ export async function handleRegister(e) {
         email,
         password
     }
-    console.log(body)
-    register(body)
+
+    await register(body)
 }
 
-export function loginHandler(e) {
+export async function loginHandler(e) {
     e.preventDefault()
-    const formData = new FormData(e.target)
-    const formInputs = Object.fromEntries(formData)
-    console.log(formInputs)
-    const areEmptyFields = Object.values(formInputs).some(val => val === '')
-    if (areEmptyFields) {
-        alert('All fields are required!')
-        return
+    const formData = new FormData(e.target);
+    const email = formData.get('email').trim();
+    const password = formData.get('password').trim();
+
+    if (!email || !password) {
+        alert('All fields are required!');
+        return;
     }
-    login(formInputs)
+    await login({ email, password })
 
 }

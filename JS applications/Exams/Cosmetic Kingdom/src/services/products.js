@@ -12,6 +12,7 @@ export async function getProducts(ctx, next) {
         }
         const data = await response.json()
         ctx.products = data
+
         next()
 
     } catch (error) {
@@ -21,6 +22,7 @@ export async function getProducts(ctx, next) {
 
 export async function getProduct(ctx, next) {
     const productId = ctx.params.id
+
     try {
         const response = await fetch(`http://localhost:3030/data/products/${productId}`)
         if (!response.ok) {
@@ -29,6 +31,7 @@ export async function getProduct(ctx, next) {
         }
         const data = await response.json()
         ctx.product = data
+
         next()
 
     } catch (error) {
@@ -38,7 +41,7 @@ export async function getProduct(ctx, next) {
 
 export async function getBuyCount(ctx, next) {
     const productId = ctx.params.id
-    
+
     try {
         const response = await fetch(`http://localhost:3030/data/bought?where=productId%3D%22${productId}%22&distinct=_ownerId&count`)
         if (!response.ok) {
@@ -46,7 +49,7 @@ export async function getBuyCount(ctx, next) {
             throw new Error(error.message)
         }
         const data = await response.json()
-      
+
         ctx.getBuyCount = data
         next()
 
@@ -58,7 +61,7 @@ export async function getBuyCount(ctx, next) {
 export async function isBoughtUser(ctx, next) {
     const productId = ctx.params.id
     const userId = getUserId()
-   
+
     try {
         const response = await fetch(`http://localhost:3030/data/bought?where=productId%3D%22${productId}%22%20and%20_ownerId%3D%22${userId}%22&count`)
         if (!response.ok) {
@@ -87,10 +90,10 @@ export async function handleCreateProduct(e) {
     const description = formData.get('description')
     const price = formData.get('price')
 
-    if (!name || !imageUrl || !category || !description || !price) {
-        return alert('All fields are required')
+    if (!name.trim() || !imageUrl.trim() || !category.trim() || !description.trim() || !price.trim()) {
+        return alert('All fields are required');
     }
-
+    
     const body = {
         name,
         imageUrl,
@@ -98,7 +101,7 @@ export async function handleCreateProduct(e) {
         description,
         price
     }
-    createProduct(body)
+    await createProduct(body)
 }
 
 export async function handleEditProduct(e, productId) {
@@ -122,7 +125,33 @@ export async function handleEditProduct(e, productId) {
         description,
         price
     }
-    editProduct(body, productId)
+    await editProduct(body, productId)
+}
+
+async function editProduct(body, productId) {
+
+
+    try {
+        const response = await fetch(`http://localhost:3030/data/products/${productId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Authorization': getToken()
+            },
+            body: JSON.stringify(body)
+        })
+
+        if (!response.ok) {
+            let error = await response.json()
+            throw new Error(error.message)
+        }
+        const data = await response.json()
+
+        page.redirect(`/products/${productId}`)
+    } catch (error) {
+        alert(error.message)
+    }
+
 }
 
 async function createProduct(body) {
@@ -147,50 +176,30 @@ async function createProduct(body) {
     } catch (error) {
         alert(error.message)
     }
-
-}
-
-async function editProduct(body, productId) {
-   
- 
-    try {
-        const response = await fetch(`http://localhost:3030/data/products/${productId}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-Authorization': getToken()
-            },
-            body: JSON.stringify(body)
-        })
-
-        if (!response.ok) {
-            let error = await response.json()
-            throw new Error(error.message)
-        }
-        const data = await response.json()
-
-        page.redirect(`/products/${productId}`)
-    } catch (error) {
-        alert(error.message)
-    }
-
+    
 }
 
 
-export async function  onDelete(e, id){
+
+export async function onDelete(e, id) {
     e.preventDefault()
 
     try {
-  
-        confirm('Are you sure you want to delete this item?')
+
+        const confirmed = confirm('Are you sure you want to delete this item?');
+        if (!confirmed) {
+            return;
+        }
+
         const response = await fetch(`http://localhost:3030/data/products/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
                 'X-Authorization': getToken()
             },
-        })
-  
+        });
+
+
         if (!response.ok) {
             let error = await response.json()
             throw new Error(error.message)
@@ -199,19 +208,11 @@ export async function  onDelete(e, id){
     } catch (error) {
         alert(error.message)
     }
-  }
+}
 
-  export function handleBuy(e, productId){
-    e.preventDefault()
+export async function handleBuy(e, productId) {
+    e.preventDefault();
 
-    
-    const body = {
-      productId,
-    }
-    buy(body, productId)
-  }
-
- async function buy(body, productId){
     try {
         const response = await fetch(`http://localhost:3030/data/bought`, {
             method: 'POST',
@@ -219,19 +220,17 @@ export async function  onDelete(e, id){
                 'Content-Type': 'application/json',
                 'X-Authorization': getToken()
             },
-            body: JSON.stringify(body)
-        })
-      
+            body: JSON.stringify({ productId })
+        });
 
         if (!response.ok) {
-            let error = await response.json()
-            throw new Error(error.message)
+            let error = await response.json();
+            throw new Error(error.message);
         }
-        const data = await response.json()
-     
 
-        page.redirect(`/products/${productId}`)
+        console.log(`Product ${productId} bought successfully!`);
+        page.redirect(`/products/${productId}`);
     } catch (error) {
-        alert(error.message)
+        alert(error.message);
     }
-  }
+}
