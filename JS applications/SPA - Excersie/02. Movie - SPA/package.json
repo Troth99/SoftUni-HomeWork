@@ -1,6 +1,7 @@
 {
   "name": "02.movie",
   "version": "1.0.0",
+  "description": "Online Book Library Single Page Application",
   "main": "index.html",
   "scripts": {
     "test": "mocha tests",
@@ -13,7 +14,7 @@
     "page": "^1.11.6"
   },
   "devDependencies": {
-    "http-server": "14.1.1",
+    "http-server": "0.12.3",
     "playwright-chromium": "1.9.2",
     "mocha": "8.3.2",
     "chai": "4.3.4"
