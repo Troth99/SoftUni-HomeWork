@@ -37,7 +37,7 @@ function detailsTemplate(fruit, isOwner) {
               <div id="action-buttons">
     ${isOwner ? html` 
             <a href=${`/edit/${fruit._id}`} id="edit-btn">Edit</a>
-            <a href="" id="delete-btn" @click=${(e)=> deleteFruitHandler(e,id)}>Delete</a>` : ''}
+            <a href="" id="delete-btn" @click=${(e)=> deleteFruitHandler(e,fruit._id)}>Delete</a>` : ''}
       
           </div>
             </div>

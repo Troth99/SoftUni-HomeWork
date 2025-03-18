@@ -39,7 +39,7 @@ function navBarTemplate(token) {
 
         <nav>
           <div>
-            <a href="/catalog">Fruits</a>
+            <a href="/dashboard">Fruits</a>
             <a href="/search">Search</a>
           </div>
 

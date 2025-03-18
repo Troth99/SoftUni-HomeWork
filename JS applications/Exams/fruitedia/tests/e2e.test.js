@@ -5,7 +5,7 @@ const host = "http://localhost:3000"; // Application host (NOT service host - th
 const interval = 500;
 const timeout = 6000;
 const DEBUG = false;
-const slowMo = 1000;
+const slowMo = 2000;
 
 const mockData = require("./mock-data.json");
 

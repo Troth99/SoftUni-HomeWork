@@ -5,6 +5,7 @@ import { mainEl } from "../constants.js"
 
 export default function showDashBoardView(ctx) {
     const fruits = ctx.fruits
+    console.log(fruits)
     render(dashboardTemplate(fruits), mainEl)
 }
 
@@ -16,7 +17,7 @@ function singleFruitTempalte(fruit) {
     <div class="fruit">
             <img src="${fruit.imageUrl}" alt="example1" />
             <h3 class="title">${fruit.name}</h3>
-            <p>${fruit.description}</p>
+            <p class="description">${fruit.description}</p>
             <a class="details-btn" href=${`/details/${fruitId}`}>More Info</a>
           </div>
     `

@@ -32,8 +32,9 @@ export async function getSingleFruit(ctx, next) {
             throw new Error(error.message)
         }
         const data = await response.json()
-
+ 
         ctx.fruit = data
+        console.log(ctx)
         next()
 
     } catch (error) {
@@ -61,7 +62,7 @@ export async function createFormHandler(e) {
         nutrition,
     }
     await createPostReuqester(body)
-    page.redirect('/catalog')
+    page.redirect('/dashboard')
 
 }
 
@@ -147,7 +148,7 @@ export async function deleteFruitHandler(e, id) {
                 'X-Authorization': getToken()
             },
         })
-        page.redirect('/catalog')
+        page.redirect('/dashboard')
     } catch (error) {
         alert(error.message)
     }
